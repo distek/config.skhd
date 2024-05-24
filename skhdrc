@@ -1,0 +1,191 @@
+# SKHDRC
+
+# Window management {{{
+# focus window or next display
+fn - h : command yabai -m window --focus west || yabai -m display --focus west
+fn - j : command yabai -m window --focus south || yabai -m display --focus north
+fn - k : command yabai -m window --focus north || yabai -m display --focus south
+fn - l : command yabai -m window --focus east || yabai -m display --focus east
+
+# move window
+lshift + fn - h : yabai -m window --warp west
+lshift + fn - j : yabai -m window --warp south
+lshift + fn - k : yabai -m window --warp north
+lshift + fn - l : yabai -m window --warp east
+
+# send window to desktop
+lshift + fn - 1 : yabai -m window --space 1
+lshift + fn - 2 : yabai -m window --space 2
+lshift + fn - 3 : yabai -m window --space 3
+lshift + fn - 4 : yabai -m window --space 4
+lshift + fn - 5 : yabai -m window --space 5
+lshift + fn - 6 : yabai -m window --space 6
+lshift + fn - 7 : yabai -m window --space 7
+lshift + fn - 8 : yabai -m window --space 8
+lshift + fn - 9 : yabai -m window --space 9
+lshift + fn - 0 :  yabai -m window --space 10
+
+# set insertion point in focused container
+fn - c : command $HOME/.config/yabai/scripts/yabai-insert
+fn - x : command $HOME/.config/yabai/scripts/yabai-insert cancel
+
+fn - b : yabai -m window --insert stack
+
+# fullscreen window (including floats)
+fn -f : command ~/.config/yabai/scripts/yabai-fullscreen
+
+# rotate tree
+fn + lshift - r : yabai -m space --rotate 90
+
+# float / unfloat window and center on screeen
+lshift + fn - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# stack - forward
+fn - tab : $HOME/.config/yabai/scripts/yabai_stack.sh next
+
+# stack - backward
+lshift + fn - tab : $HOME/.config/yabai/scripts/yabai_stack.sh prev
+
+fn + ctrl - l : command ~/.local/bin/yabai-resize -a 20 -d left
+fn + ctrl - k : command ~/.local/bin/yabai-resize -a 20 -d down
+fn + ctrl - j : command ~/.local/bin/yabai-resize -a 20 -d up
+fn + ctrl - h : command ~/.local/bin/yabai-resize -a 20 -d right
+
+#   }}}
+
+# Workspace {{{
+# fn - 1 : yabai -m space --focus 1
+# fn - 2 : yabai -m space --focus 2
+# fn - 3 : yabai -m space --focus 3
+# fn - 4 : yabai -m space --focus 4
+# fn - 5 : yabai -m space --focus 5
+# fn - 6 : yabai -m space --focus 6
+# fn - 7 : yabai -m space --focus 7
+# fn - 8 : yabai -m space --focus 8
+# fn - 9 : yabai -m space --focus 9
+# fn - 0 : yabai -m space --focus 10
+
+# fn - 1 : command $HOME/.config/yabai/scripts/space_switch.sh 1
+# fn - 2 : command $HOME/.config/yabai/scripts/space_switch.sh 2
+# fn - 3 : command $HOME/.config/yabai/scripts/space_switch.sh 3
+# fn - 4 : command $HOME/.config/yabai/scripts/space_switch.sh 4
+# fn - 5 : command $HOME/.config/yabai/scripts/space_switch.sh 5
+# fn - 6 : command $HOME/.config/yabai/scripts/space_switch.sh 6
+# fn - 7 : command $HOME/.config/yabai/scripts/space_switch.sh 7
+# fn - 8 : command $HOME/.config/yabai/scripts/space_switch.sh 8
+# fn - 9 : command $HOME/.config/yabai/scripts/space_switch.sh 9
+# fn - 0 : command $HOME/.config/yabai/scripts/space_switch.sh 10
+
+fn - 1 : skhd -k "ctrl + cmd - 1"
+fn - 2 : skhd -k "ctrl + cmd - 2"
+fn - 3 : skhd -k "ctrl + cmd - 3"
+fn - 4 : skhd -k "ctrl + cmd - 4"
+fn - 5 : skhd -k "ctrl + cmd - 5"
+fn - 6 : skhd -k "ctrl + cmd - 6"
+fn - 7 : skhd -k "ctrl + cmd - 7"
+fn - 8 : skhd -k "ctrl + cmd - 8"
+fn - 9 : skhd -k "ctrl + cmd - 9"
+fn - 0 : skhd -k "ctrl + cmd - 0"
+# }}}
+
+# Functions {{{
+
+# Hard kill apps
+fn + lshift - q : command kill -KILL $(yabai -m query --windows --window | jq '.pid')
+
+# Kill window of focused app (and focus _something_)
+fn - q : yabai -m window --close; yabai -m window --focus last
+
+# Lock Screen
+fn - backspace : command ~/.config/yabai/scripts/lockscreen
+0x5A : command ~/.config/yabai/scripts/lockscreen
+
+# }}}
+ 
+# Execs {{{
+
+# Terminal
+ctrl + alt - return : command /Applications/Alacritty.app/Contents/MacOS/alacritty
+# ctrl + alt - return : command kitty -1 -d ~/
+# ctrl + alt - return : command wezterm start --always-new-process
+# ctrl + alt - return : command ~/Scripts/iterm2window.sh
+
+
+# Finder window
+# fn + lshift - f : command osascript -e 'tell application "Finder" to make new Finder window'
+
+
+fn + lshift - s : command /Applications/Alacritty.app/Contents/MacOS/alacritty -t 'VIMFLOAT' --option window.dimensions.columns=40 --option window.dimensions.lines=8 -e  ~/.config/yabai/scripts/screenshot
+
+fn - d : command ~/.config/yabai/scripts/launcher.sh
+
+# fn - d : command alacritty -t 'TermLauncher' --option window.dimensions.columns=40 --option window.dimensions.lines=30 -e ~/.config/yabai/scripts/launcher.sh
+# fn - o : command neovide
+
+# fn - d : command osascript -e 'tell application "Alfred 3" to search'
+
+# Htop float - fn for normal windows and ctrl for terminals
+# fn + alt - backspace : command kitty -1 -T CTRL_ALT_DELETE --override initial_window_width=121c --override initial_window_height=50c htop
+# ctrl + alt - backspace : command kitty -1 -T CTRL_ALT_DELETE --override initial_window_width=121c --override initial_window_height=50c htop
+
+fn - 0x1B : command ~/.local/bin/yabai-scratchpad --name terminal
+fn - n : command ~/.local/bin/yabai-scratchpad --name notes
+fn + shift - n : command ~/.local/bin/yabai-scratchpad --name apple-notes
+fn - m : command ~/.local/bin/yabai-scratchpad --name scratchpad
+fn + shift - m : command ~/.local/bin/yabai-scratchpad --name messages
+fn - p : command ~/.local/bin/yabai-scratchpad --name rocket-chat
+fn - o : command ~/.local/bin/yabai-scratchpad --name discord
+fn - w : command ~/.local/bin/yabai-scratchpad --name spotify
+fn - 0x2C : command ~/.local/bin/yabai-scratchpad --name calendar
+
+# }}}
+
+# Modes {{{
+
+:: default : $HOME/.config/sketchybar/plugins/modal.sh normal
+
+# resize window(mode)
+# :: resize : $HOME/.config/sketchybar/plugins/modal.sh resize
+# resize < escape ; default
+# resize < left  : command ~/.local/bin/yabai-resize -a 40 -d left
+# resize < down  : command ~/.local/bin/yabai-resize -a 40 -d down
+# resize < up    : command ~/.local/bin/yabai-resize -a 40 -d up
+# resize < right : command ~/.local/bin/yabai-resize -a 40 -d right
+# 
+# resize < h : command ~/.local/bin/yabai-resize -a 60 -d left
+# resize < j : command ~/.local/bin/yabai-resize -a 60 -d down
+# resize < k : command ~/.local/bin/yabai-resize -a 60 -d up
+# resize < l : command ~/.local/bin/yabai-resize -a 60 -d right
+# 
+# resize < lshift - left  : command ~/.local/bin/yabai-resize -a 20 -d left
+# resize < lshift - down  : command ~/.local/bin/yabai-resize -a 20 -d down
+# resize < lshift - up    : command ~/.local/bin/yabai-resize -a 20 -d up
+# resize < lshift - right : command ~/.local/bin/yabai-resize -a 20 -d right
+# 
+# resize < lshift - h : command ~/.local/bin/yabai-resize -a 20 -d left
+# resize < lshift - j : command ~/.local/bin/yabai-resize -a 20 -d down
+# resize < lshift - k : command ~/.local/bin/yabai-resize -a 20 -d up
+# resize < lshift - l : command ~/.local/bin/yabai-resize -a 20 -d right
+# 
+# cmd + shift- r ; resize
+
+# }}}
+
+# Remaps {{{
+fn - d : skhd -k "ctrl + alt + cmd - d"
+
+fn + shift - d : skhd -k "ctrl + alt + shift + cmd - d"
+
+ralt - h: skhd -k "left"
+ralt - j: skhd -k "down"
+ralt - k: skhd -k "up"
+ralt - l: skhd -k "right"
+# }}}
+
+# Application specific maps {{{
+fn - 0x2F [
+    "finder" : /usr/bin/automator ~/Library/Services/Testing.workflow;
+]
+# }}}
+
+# vi:ft=config
