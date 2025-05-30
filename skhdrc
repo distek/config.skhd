@@ -1,142 +1,124 @@
 # SKHDRC
 
-# Window management {{{
-# focus window or next display
-fn - h : command yabai -m window --focus west || yabai -m display --focus west
-fn - j : command yabai -m window --focus south || yabai -m display --focus north
-fn - k : command yabai -m window --focus north || yabai -m display --focus south
-fn - l : command yabai -m window --focus east || yabai -m display --focus east
+.blacklist [
+    "fl studio"
+    "SkyrimSE.exe"
+]
 
-# move window
-lshift + fn - h : yabai -m window --warp west
-lshift + fn - j : yabai -m window --warp south
-lshift + fn - k : yabai -m window --warp north
-lshift + fn - l : yabai -m window --warp east
+## Window management
+### focus window or next display
+cmd - h : command /opt/homebrew/bin/yabai -m window --focus west || yabai -m display --focus west
+cmd - j : command /opt/homebrew/bin/yabai -m window --focus south || yabai -m display --focus north
+cmd - k : command /opt/homebrew/bin/yabai -m window --focus north || yabai -m display --focus south
+cmd - l : command /opt/homebrew/bin/yabai -m window --focus east || yabai -m display --focus east
+# fn - h : command ~/.local/bin/hs -c "WM.Focus.West()" 
+# fn - j : command ~/.local/bin/hs -c "WM.Focus.South()"
+# fn - k : command ~/.local/bin/hs -c "WM.Focus.North()"
+# fn - l : command ~/.local/bin/hs -c "WM.Focus.East()"
 
-# send window to desktop
-lshift + fn - 1 : yabai -m window --space 1
-lshift + fn - 2 : yabai -m window --space 2
-lshift + fn - 3 : yabai -m window --space 3
-lshift + fn - 4 : yabai -m window --space 4
-lshift + fn - 5 : yabai -m window --space 5
-lshift + fn - 6 : yabai -m window --space 6
-lshift + fn - 7 : yabai -m window --space 7
-lshift + fn - 8 : yabai -m window --space 8
-lshift + fn - 9 : yabai -m window --space 9
-lshift + fn - 0 :  yabai -m window --space 10
+### move window
+lshift + cmd - h : yabai -m window --warp west
+lshift + cmd - j : yabai -m window --warp south
+lshift + cmd - k : yabai -m window --warp north
+lshift + cmd - l : yabai -m window --warp east
 
-# set insertion point in focused container
-fn - c : command $HOME/.config/yabai/scripts/yabai-insert
-fn - x : command $HOME/.config/yabai/scripts/yabai-insert cancel
+### send window to desktop
+lshift + cmd - 1 : yabai -m window --space 1
+lshift + cmd - 2 : yabai -m window --space 2
+lshift + cmd - 3 : yabai -m window --space 3
+lshift + cmd - 4 : yabai -m window --space 4
+lshift + cmd - 5 : yabai -m window --space 5
+lshift + cmd - 6 : yabai -m window --space 6
+lshift + cmd - 7 : yabai -m window --space 7
+lshift + cmd - 8 : yabai -m window --space 8
+lshift + cmd - 9 : yabai -m window --space 9
+lshift + cmd - 0 :  yabai -m window --space 10
 
-fn - b : yabai -m window --insert stack
+### set insertion point in focused container
+# fn - c : command $HOME/.config/yabai/scripts/yabai-insert
+# fn - x : command $HOME/.config/yabai/scripts/yabai-insert cancel
 
-# fullscreen window (including floats)
-fn -f : command ~/.config/yabai/scripts/yabai-fullscreen
+# cmd - b : yabai -m window --insert stack
 
-# rotate tree
-fn + lshift - r : yabai -m space --rotate 90
+### fullscreen window (including floats)
+cmd + shift - f : yabai -m window --toggle zoom-fullscreen
 
-# float / unfloat window and center on screeen
-lshift + fn - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
+### rotate tree
+# cmd + lshift - r : yabai -m space --rotate 90
 
-# stack - forward
-fn - tab : $HOME/.config/yabai/scripts/yabai_stack.sh next
+### float / unfloat window and center on screeen
+lshift + cmd - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
-# stack - backward
-lshift + fn - tab : $HOME/.config/yabai/scripts/yabai_stack.sh prev
+### stack - forward
+# cmd - tab : $HOME/.config/yabai/scripts/yabai_stack.sh next
+# 
+# ### stack - backward
+# lshift + cmd - tab : $HOME/.config/yabai/scripts/yabai_stack.sh prev
 
-fn + ctrl - l : command ~/.local/bin/yabai-resize -a 20 -d left
-fn + ctrl - k : command ~/.local/bin/yabai-resize -a 20 -d down
-fn + ctrl - j : command ~/.local/bin/yabai-resize -a 20 -d up
-fn + ctrl - h : command ~/.local/bin/yabai-resize -a 20 -d right
+cmd + ctrl - l : command ~/.local/bin/yabai-resize -a 20 -d left
+cmd + ctrl - k : command ~/.local/bin/yabai-resize -a 20 -d down
+cmd + ctrl - j : command ~/.local/bin/yabai-resize -a 20 -d up
+cmd + ctrl - h : command ~/.local/bin/yabai-resize -a 20 -d right
 
-#   }}}
+## Workspace
+# cmd - 1 : skhd -k "ctrl + cmd - 1"
+# cmd - 2 : skhd -k "ctrl + cmd - 2"
+# cmd - 3 : skhd -k "ctrl + cmd - 3"
+# cmd - 4 : skhd -k "ctrl + cmd - 4"
+# cmd - 5 : skhd -k "ctrl + cmd - 5"
+# cmd - 6 : skhd -k "ctrl + cmd - 6"
+# cmd - 7 : skhd -k "ctrl + cmd - 7"
+# cmd - 8 : skhd -k "ctrl + cmd - 8"
+# cmd - 9 : skhd -k "ctrl + cmd - 9"
+# cmd - 0 : skhd -k "ctrl + cmd - 0"
 
-# Workspace {{{
-# fn - 1 : yabai -m space --focus 1
-# fn - 2 : yabai -m space --focus 2
-# fn - 3 : yabai -m space --focus 3
-# fn - 4 : yabai -m space --focus 4
-# fn - 5 : yabai -m space --focus 5
-# fn - 6 : yabai -m space --focus 6
-# fn - 7 : yabai -m space --focus 7
-# fn - 8 : yabai -m space --focus 8
-# fn - 9 : yabai -m space --focus 9
-# fn - 0 : yabai -m space --focus 10
+cmd - 1 : yabai -m space --focus 1
+cmd - 2 : yabai -m space --focus 2
+cmd - 3 : yabai -m space --focus 3
+cmd - 4 : yabai -m space --focus 4
+cmd - 5 : yabai -m space --focus 5
+cmd - 6 : yabai -m space --focus 6
+cmd - 7 : yabai -m space --focus 7
+cmd - 8 : yabai -m space --focus 8
+cmd - 9 : yabai -m space --focus 9
+cmd - 0 : yabai -m space --focus 10
 
-# fn - 1 : command $HOME/.config/yabai/scripts/space_switch.sh 1
-# fn - 2 : command $HOME/.config/yabai/scripts/space_switch.sh 2
-# fn - 3 : command $HOME/.config/yabai/scripts/space_switch.sh 3
-# fn - 4 : command $HOME/.config/yabai/scripts/space_switch.sh 4
-# fn - 5 : command $HOME/.config/yabai/scripts/space_switch.sh 5
-# fn - 6 : command $HOME/.config/yabai/scripts/space_switch.sh 6
-# fn - 7 : command $HOME/.config/yabai/scripts/space_switch.sh 7
-# fn - 8 : command $HOME/.config/yabai/scripts/space_switch.sh 8
-# fn - 9 : command $HOME/.config/yabai/scripts/space_switch.sh 9
-# fn - 0 : command $HOME/.config/yabai/scripts/space_switch.sh 10
+## Functions
 
-fn - 1 : skhd -k "ctrl + cmd - 1"
-fn - 2 : skhd -k "ctrl + cmd - 2"
-fn - 3 : skhd -k "ctrl + cmd - 3"
-fn - 4 : skhd -k "ctrl + cmd - 4"
-fn - 5 : skhd -k "ctrl + cmd - 5"
-fn - 6 : skhd -k "ctrl + cmd - 6"
-fn - 7 : skhd -k "ctrl + cmd - 7"
-fn - 8 : skhd -k "ctrl + cmd - 8"
-fn - 9 : skhd -k "ctrl + cmd - 9"
-fn - 0 : skhd -k "ctrl + cmd - 0"
-# }}}
+### Hard kill apps
+cmd + lshift - q : command kill -KILL $(yabai -m query --windows --window | jq '.pid')
 
-# Functions {{{
+### Kill window of focused app (and focus _something_)
+cmd - q : yabai -m window --close; yabai -m window --focus last
+# fn - q : command ~/.local/bin/hs -c "WM.Close()"
 
-# Hard kill apps
-fn + lshift - q : command kill -KILL $(yabai -m query --windows --window | jq '.pid')
+### Lock Screen
+# fn - backspace : command ~/.config/yabai/scripts/lockscreen
+# 0x5A : command ~/.config/yabai/scripts/lockscreen
 
-# Kill window of focused app (and focus _something_)
-fn - q : yabai -m window --close; yabai -m window --focus last
+# Execs 
 
-# Lock Screen
-fn - backspace : command ~/.config/yabai/scripts/lockscreen
-0x5A : command ~/.config/yabai/scripts/lockscreen
+## Terminal
+cmd - return : command /Applications/Alacritty.app/Contents/MacOS/alacritty
+# cmd - return : command /Applications/WezTerm.app/Contents/MacOS/wezterm start
+# cmd - return : command open -na "Ghostty"
 
-# }}}
- 
-# Execs {{{
+cmd + lshift - s : command /Applications/Alacritty.app/Contents/MacOS/alacritty -t 'VIMFLOAT' --option window.dimensions.columns=40 --option window.dimensions.lines=8 -e  ~/.config/yabai/scripts/screenshot
 
-# Terminal
-ctrl + alt - return : command /Applications/Alacritty.app/Contents/MacOS/alacritty
-# ctrl + alt - return : command kitty -1 -d ~/
-# ctrl + alt - return : command wezterm start --always-new-process
-# ctrl + alt - return : command ~/Scripts/iterm2window.sh
+# Loungy is the shit
+# cmd - d : command /Applications/Loungy.app/Contents/MacOS/loungy command root
+cmd + alt - c : command /Applications/Loungy.app/Contents/MacOS/loungy command clipboard
 
-
-# Finder window
-# fn + lshift - f : command osascript -e 'tell application "Finder" to make new Finder window'
-
-
-fn + lshift - s : command /Applications/Alacritty.app/Contents/MacOS/alacritty -t 'VIMFLOAT' --option window.dimensions.columns=40 --option window.dimensions.lines=8 -e  ~/.config/yabai/scripts/screenshot
-
-fn - d : command ~/.config/yabai/scripts/launcher.sh
-
-# fn - d : command alacritty -t 'TermLauncher' --option window.dimensions.columns=40 --option window.dimensions.lines=30 -e ~/.config/yabai/scripts/launcher.sh
-# fn - o : command neovide
-
-# fn - d : command osascript -e 'tell application "Alfred 3" to search'
-
-# Htop float - fn for normal windows and ctrl for terminals
-# fn + alt - backspace : command kitty -1 -T CTRL_ALT_DELETE --override initial_window_width=121c --override initial_window_height=50c htop
-# ctrl + alt - backspace : command kitty -1 -T CTRL_ALT_DELETE --override initial_window_width=121c --override initial_window_height=50c htop
-
-fn - 0x1B : command ~/.local/bin/yabai-scratchpad --name terminal
-fn - n : command ~/.local/bin/yabai-scratchpad --name notes
-fn + shift - n : command ~/.local/bin/yabai-scratchpad --name apple-notes
-fn - m : command ~/.local/bin/yabai-scratchpad --name scratchpad
-fn + shift - m : command ~/.local/bin/yabai-scratchpad --name messages
-fn - p : command ~/.local/bin/yabai-scratchpad --name rocket-chat
-fn - o : command ~/.local/bin/yabai-scratchpad --name discord
-fn - w : command ~/.local/bin/yabai-scratchpad --name spotify
-fn - 0x2C : command ~/.local/bin/yabai-scratchpad --name calendar
+# scratchpads
+cmd - 0x1B : command ~/.local/bin/yabai-scratchpad-min --name terminal
+cmd - n : command ~/.local/bin/yabai-scratchpad-min --name notes
+cmd + shift - n : command ~/.local/bin/yabai-scratchpad-min --name apple-notes
+cmd - m : command ~/.local/bin/yabai-scratchpad-min --name scratchpad
+cmd + shift - m : command ~/.local/bin/yabai-scratchpad-min --name messages
+cmd - p : command ~/.local/bin/yabai-scratchpad-min --name messages
+cmd + shift - p : command ~/.local/bin/yabai-scratchpad-min --name rocket-chat
+cmd - w : command ~/.local/bin/yabai-scratchpad-min --name spotify
+cmd - 0x2C : command ~/.local/bin/yabai-scratchpad-min --name calendar
 
 # }}}
 
@@ -172,9 +154,9 @@ fn - 0x2C : command ~/.local/bin/yabai-scratchpad --name calendar
 # }}}
 
 # Remaps {{{
-fn - d : skhd -k "ctrl + alt + cmd - d"
+cmd - d : skhd -k "ctrl + alt + cmd - d"
 
-fn + shift - d : skhd -k "ctrl + alt + shift + cmd - d"
+cmd + shift - d : skhd -k "ctrl + alt + shift + cmd - d"
 
 ralt - h: skhd -k "left"
 ralt - j: skhd -k "down"
@@ -183,7 +165,7 @@ ralt - l: skhd -k "right"
 # }}}
 
 # Application specific maps {{{
-fn - 0x2F [
+cmd - 0x2F [
     "finder" : /usr/bin/automator ~/Library/Services/Testing.workflow;
 ]
 # }}}
